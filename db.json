@@ -1,4 +1,8 @@
 
 { 
-	"tasks": []
+	"tasks": [
+		{"id": "0", "message": "task0"},
+		{"id": "1", "message": "task1"},
+		{"id": "2", "message": "task2"}
+	]
 }
