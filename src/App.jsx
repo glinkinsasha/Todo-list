@@ -8,6 +8,8 @@ function App() {
   const [addingTask, setAddingTask] = useState(false);
   const [actioningTask, setActioningTask] = useState(0);
 
+  const [addTaskValue, setAddTaskValue] = useState('');
+
 
 
   useEffect(() => {
@@ -23,16 +25,24 @@ function App() {
     fetchTasks();
   },[])
 
+  const addTask = () => {
+
+  }
+
   return (
     <div className={styles.app}>
       <input type="text" className={styles.search} placeholder='Search' />
-      <input type="button" value="Add task" className={styles.addButton} />
+      <input type="button" value="Add task" className={styles.addButton} onClick={() => {setAddingTask(true)}} />
       <input type="button" value="Sort tasks" className={styles.sortButton} />
       {
         addingTask ? 
         <div className={styles.addTaskBlock}>
-          <input type="text" className={styles.addTaskInput} />
-          <input type="button" value="Add" className={styles.addInputButton} />
+          <input type="text" className={styles.addTaskInput} placeholder='Message' value={addTaskValue} onChange={(e) => setAddTaskValue(e.target.value)} />
+          <input 
+            type="button" 
+            value={addTaskValue !== '' ? 'add': 'X'} 
+            className={styles.addInputButton} 
+            onClick={() => addTaskValue !== '' ? addTask(): setAddingTask(false)} />
         </div>: ''
       }
       
