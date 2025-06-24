@@ -5,8 +5,13 @@ import styles from './AddTaskBlock.module.css'
 export default function addTaskBlock(props) {
 	const [addTaskValue, setAddTaskValue] = useState('');
 
-	const addTask = () => {
-
+	const addTask = (message) => {
+		const array = props.taskList;
+		array.push({'id': `${props.taskList.length}`, 'message': `${message}`});
+		props.setTaskList(array);
+		props.setShowTaskListFlag(!props.showTaskListFlag);
+		props.setAddingTask(false);
+		setAddTaskValue('');
 	}
 
 	return (
@@ -19,7 +24,7 @@ export default function addTaskBlock(props) {
 						type="button" 
 						value={addTaskValue !== '' ? 'add': 'X'} 
 						className={styles.addInputButton} 
-						onClick={() => addTaskValue !== '' ? addTask(): props.setAddingTask(false)} />
+						onClick={() => addTaskValue !== '' ? addTask(addTaskValue): props.setAddingTask(false)} />
 				</div> : ''
 		}
 		</>
