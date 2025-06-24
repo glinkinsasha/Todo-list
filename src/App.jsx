@@ -1,18 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import styles from './App.module.css'
 import useFetchTask from './hooks/useFetchTasks'
+import AddTaskBlock from './AddTaskBlock/AddTaskBlock'
+import TaskList from './TaskList/TaskList'
 
 function App() {
-
   const [taskList, setTaskList] = useState([]);
-  
-  const [addingTask, setAddingTask] = useState(false);
-  const [actioningTask, setActioningTask] = useState(0);
-  const [addTaskValue, setAddTaskValue] = useState('');
-
-  const addTask = () => {
-
-  }
+	const [addingTask, setAddingTask] = useState(false);
 
   useFetchTask(setTaskList);
 
@@ -21,33 +15,9 @@ function App() {
       <input type="text" className={styles.search} placeholder='Search' />
       <input type="button" value="Add task" className={styles.addButton} onClick={() => {setAddingTask(true)}} />
       <input type="button" value="Sort tasks" className={styles.sortButton} />
-      {
-        addingTask ? 
-        <div className={styles.addTaskBlock}>
-          <input type="text" className={styles.addTaskInput} placeholder='Message' value={addTaskValue} onChange={(e) => setAddTaskValue(e.target.value)} />
-          <input 
-            type="button" 
-            value={addTaskValue !== '' ? 'add': 'X'} 
-            className={styles.addInputButton} 
-            onClick={() => addTaskValue !== '' ? addTask(): setAddingTask(false)} />
-        </div>: ''
-      }
+      <AddTaskBlock addingTask={addingTask} setAddingTask={setAddingTask} />
+      <TaskList taskList={taskList} />
       
-      <div className={styles.taskList}>
-        {
-          taskList.map(props => <div key={props.id} className={styles.task}>{props.message}
-          {
-            actioningTask == props.id ?
-            <div className={styles.buttonsBlock}>
-              <button className={styles.button}>Change</button>
-              <button className={styles.button}>Delete</button>
-            </div>: ''
-          }
-            
-          </div>)
-        }
-        
-      </div>
     </div>
   )
 }
