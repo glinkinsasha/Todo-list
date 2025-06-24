@@ -7,7 +7,6 @@ import TaskList from './TaskList/TaskList'
 function App() {
   const [taskList, setTaskList] = useState([]);
 	const [addingTask, setAddingTask] = useState(false);
-  const [showTaskListFlag, setShowTaskListFlag] = useState(true);
 
   useFetchTask(setTaskList);
 
@@ -16,9 +15,8 @@ function App() {
       <input type="text" className={styles.search} placeholder='Search' />
       <input type="button" value="Add task" className={styles.addButton} onClick={() => {setAddingTask(true)}} />
       <input type="button" value="Sort tasks" className={styles.sortButton} />
-      <AddTaskBlock addingTask={addingTask} setAddingTask={setAddingTask} taskList={taskList} setTaskList={setTaskList} showTaskListFlag={showTaskListFlag} setShowTaskListFlag={setShowTaskListFlag} />
-      {showTaskListFlag ? <TaskList taskList={taskList} />: <TaskList taskList={taskList} />}
-      
+      <AddTaskBlock addingTask={addingTask} setAddingTask={setAddingTask} taskList={taskList} setTaskList={setTaskList} />
+      <TaskList taskList={taskList}/>
     </div>
   )
 }

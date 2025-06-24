@@ -9,9 +9,16 @@ export default function addTaskBlock(props) {
 		const array = props.taskList;
 		array.push({'id': `${props.taskList.length}`, 'message': `${message}`});
 		props.setTaskList(array);
-		props.setShowTaskListFlag(!props.showTaskListFlag);
 		props.setAddingTask(false);
 		setAddTaskValue('');
+
+		fetch('http://localhost:3000/tasks', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json;charset=utf-8' },
+            body: JSON.stringify({
+               'id': `${props.taskList.length - 1}`,
+               'message': `${message}`,
+            })})
 	}
 
 	return (

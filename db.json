@@ -1,6 +1,8 @@
-
-{ 
-	"tasks": [
-		{"id": "0", "message": "task0"}
-	]
+{
+  "tasks": [
+    {
+      "id": "0",
+      "message": "task0"
+    }
+  ]
 }
