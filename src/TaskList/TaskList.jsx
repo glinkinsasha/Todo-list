@@ -3,13 +3,15 @@ import styles from './TaskList.module.css'
 
 export default function TaskList(props) {
 	
-	const [actioningTask, setActioningTask] = useState(4);
+	const [actioningTask, setActioningTask] = useState(-1);
 
 	return(
 		<>
 			<div className={styles.taskList}>
 			{
-				props.taskList.map(prop => <div key={prop.id} className={styles.task} onClick={() => setActioningTask(prop.id)}>{prop.message}
+				props.taskList.map(prop => <div key={prop.id} className={styles.task} 
+					onClick={() => actioningTask !== -1 && actioningTask === prop.id ? setActioningTask(-1): setActioningTask(prop.id)}>
+					{prop.message}
 				{
 					actioningTask == prop.id ?
 					<div className={styles.buttonsBlock}>
