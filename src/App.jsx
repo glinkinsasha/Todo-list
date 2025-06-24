@@ -1,33 +1,20 @@
 import { useState, useEffect } from 'react'
 import styles from './App.module.css'
+import useFetchTask from './hooks/useFetchTasks'
 
 function App() {
 
   const [taskList, setTaskList] = useState([]);
-
+  
   const [addingTask, setAddingTask] = useState(false);
   const [actioningTask, setActioningTask] = useState(0);
-
   const [addTaskValue, setAddTaskValue] = useState('');
-
-
-
-  useEffect(() => {
-    const URL = 'http://localhost:3000/tasks';
-
-    const fetchTasks = async () => {
-      let response = await fetch(URL);
-      response.json()
-      .then( result => setTaskList(result))
-      .catch((error) => console.log(error))
-      .finally(() => {});
-    }
-    fetchTasks();
-  },[])
 
   const addTask = () => {
 
   }
+
+  useFetchTask(setTaskList);
 
   return (
     <div className={styles.app}>
