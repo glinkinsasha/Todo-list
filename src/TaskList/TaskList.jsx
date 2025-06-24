@@ -9,7 +9,7 @@ export default function TaskList(props) {
 		<>
 			<div className={styles.taskList}>
 			{
-				props.taskList.map(prop => <div key={prop.id} className={styles.task}>{prop.message}
+				props.taskList.map(prop => <div key={prop.id} className={styles.task} onClick={() => setActioningTask(prop.id)}>{prop.message}
 				{
 					actioningTask == prop.id ?
 					<div className={styles.buttonsBlock}>
