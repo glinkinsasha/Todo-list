@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import styles from './TaskList.module.css'
 
-export default function TaskList(props) {
-	
+export default function TaskList(props) {	
 	const [actioningTask, setActioningTask] = useState(-1);
 	const [changing, setChanging] = useState(-1);
 
@@ -46,12 +45,12 @@ export default function TaskList(props) {
 		<>
 			<div className={styles.taskList}>
 			{
-				props.taskList.map(prop => <div key={prop.id} className={styles.task} 
+				props.taskList.map(prop => {return prop.message.indexOf(props.searchValue) !== -1 ? <div key={prop.id} className={styles.task} 
 					onClick={() => actioningTask !== -1 && actioningTask === prop.id ? setActioningTask(-1): setActioningTask(prop.id)}>
 					{changing !== -1 && changing === prop.id ? 
 					<div className={styles.changeBlock}>
-						<input type='text' value={messageChangeInput} onChange={(e) => setMessageChangeInput(e.target.value)} />
-						<input type="button" value="OK" onClick={() => changeTasksMessage(prop.id)} />
+						<input type='text' className={styles.changeInput} value={messageChangeInput} onChange={(e) => setMessageChangeInput(e.target.value)} />
+						<input type="button" className={styles.changeInputButton} value="OK" onClick={() => changeTasksMessage(prop.id)} />
 					</div> : 
 					<span id={prop.id}>{prop.message}</span>}
 				{
@@ -61,7 +60,7 @@ export default function TaskList(props) {
 					<button className={styles.button} onClick={() => deleteTask(prop.id)}>Delete</button>
 					</div>: ''
 				}
-				</div>)
+				</div>: ''})
 			}
 			</div>
 		</>
