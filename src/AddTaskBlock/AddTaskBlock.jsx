@@ -7,7 +7,8 @@ export default function addTaskBlock(props) {
 
 	const addTask = (message) => {
 		const array = props.taskList;
-		array.push({'id': `${props.taskList.length}`, 'message': `${message}`});
+		const id = Date.now();
+		array.push({'id': `${id}`, 'message': `${message}`});
 		props.setTaskList(array);
 		props.setAddingTask(false);
 		setAddTaskValue('');
@@ -16,7 +17,7 @@ export default function addTaskBlock(props) {
             method: 'POST',
             headers: { 'Content-Type': 'application/json;charset=utf-8' },
             body: JSON.stringify({
-               'id': `${Date.now()}`,
+               'id': `${id}`,
                'message': `${message}`,
             })})
 	}

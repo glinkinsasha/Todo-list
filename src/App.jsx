@@ -16,7 +16,7 @@ function App() {
       <input type="button" value="Add task" className={styles.addButton} onClick={() => {setAddingTask(true)}} />
       <input type="button" value="Sort tasks" className={styles.sortButton} />
       <AddTaskBlock addingTask={addingTask} setAddingTask={setAddingTask} taskList={taskList} setTaskList={setTaskList} />
-      <TaskList taskList={taskList}/>
+      <TaskList taskList={taskList} setTaskList={setTaskList} />
     </div>
   )
 }
